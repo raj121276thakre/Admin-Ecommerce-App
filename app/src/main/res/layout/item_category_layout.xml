@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="2.60dp"
     android:id="@+id/mainBG">
 
@@ -22,7 +23,7 @@
             android:layout_height="78.00dp"
             android:scaleType="centerInside"
             android:background="@drawable/bg_category"
-            android:src="@drawable/category_oil"
+            tools:srcCompat="@tools:sample/avatars"
 
             />
 
@@ -34,7 +35,7 @@
             android:layout_marginTop="6.50dp"
             android:gravity="center"
             android:ellipsize="end"
-            android:text="Vegetables and Fruits"
+            android:text="oil category "
             android:textSize="@dimen/_11ssp"
             android:textColor="@color/black"
 

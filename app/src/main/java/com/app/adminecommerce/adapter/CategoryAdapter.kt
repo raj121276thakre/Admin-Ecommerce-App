@@ -36,7 +36,3 @@ class CategoryAdapter(var context: Context, val categoryList: ArrayList<Category
     }
 
 }
-
-
-
-

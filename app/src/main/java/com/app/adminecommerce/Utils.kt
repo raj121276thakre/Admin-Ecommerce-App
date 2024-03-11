@@ -11,17 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 object Utils {
 
-//    private var dialog: AlertDialog? = null
-//    fun showDialog(context: Context, message: String) {
-//        val progress = ProgressDialogBinding.inflate(LayoutInflater.from(context))
-//        progress.tvMessage.text = message
-//        dialog = AlertDialog.Builder(context).setView(progress.root).setCancelable(false).create()
-//        dialog!!.show()
-//    }
-//
-//    fun hideDialog() {
-//        dialog?.dismiss()
-//    }
+
 
 
     fun showToast(context: Context, message: String) {

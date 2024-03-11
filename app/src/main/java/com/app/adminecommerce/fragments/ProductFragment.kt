@@ -7,14 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import com.app.adminecommerce.R
-import com.app.adminecommerce.databinding.FragmentCategoryBinding
 import com.app.adminecommerce.databinding.FragmentProductBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class ProductFragment : Fragment() {
@@ -24,9 +19,12 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProductBinding.inflate(layoutInflater)
+        setStatusBarColor()
         // Inflate the layout for this fragment
 
-setStatusBarColor()
+        binding.floatingActionButton.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_productFragment_to_addProductFragment)
+        }
 
 
         return binding.root
