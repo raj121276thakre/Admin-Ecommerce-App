@@ -77,8 +77,7 @@ class CategoryFragment : Fragment() {
         return binding.root
     }
 
-    private fun getData() {
-        val categoryList = ArrayList<CategoryModel>()
+    private fun getData() { val categoryList = ArrayList<CategoryModel>()
         Firebase.firestore.collection("categories")
             .get().addOnSuccessListener {
 
@@ -89,6 +88,7 @@ class CategoryFragment : Fragment() {
                 }
                 binding.categoryRecycler.adapter = CategoryAdapter(requireContext(), categoryList)
             }
+
     }
 
     private fun validateData(categoryName: String) {

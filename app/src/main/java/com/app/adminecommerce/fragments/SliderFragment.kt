@@ -79,7 +79,7 @@ class SliderFragment : Fragment() {
         refStorage.putFile(imageUri)
             .addOnSuccessListener {
                 it.storage.downloadUrl.addOnSuccessListener { image ->
-                    storeData(it.toString())
+                    storeData(image.toString())
                 }
             }
             .addOnFailureListener {

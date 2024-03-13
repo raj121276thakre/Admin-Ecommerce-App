@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".activity.AllOrdersActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allordersRecycler"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:padding="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/all_order_item_layout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
