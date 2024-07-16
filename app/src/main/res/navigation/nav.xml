@@ -24,7 +24,20 @@
         android:id="@+id/addProductFragment"
         android:name="com.app.adminecommerce.fragments.AddProductFragment"
         android:label="fragment_add_product"
-        tools:layout="@layout/fragment_add_product" />
+        tools:layout="@layout/fragment_add_product" >
+
+        <argument
+            android:name="product"
+            app:argType="com.app.adminecommerce.model.AddProductModel"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+
+
+
+    </fragment>
+
+
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.app.adminecommerce.fragments.CategoryFragment"

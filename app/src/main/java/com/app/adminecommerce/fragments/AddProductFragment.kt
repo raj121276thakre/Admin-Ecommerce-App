@@ -25,6 +25,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 
 
 class AddProductFragment : Fragment() {
@@ -37,6 +39,10 @@ class AddProductFragment : Fragment() {
     private var coverImgUrl: String? = ""
     private lateinit var dialog: Dialog
     private lateinit var categoryList: ArrayList<String>
+
+    private var productId: String? = null
+
+    private val args: AddProductFragmentArgs by navArgs()
 
     private var launchGalleryActivity = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -94,40 +100,131 @@ class AddProductFragment : Fragment() {
         adapter = AddProductImageAdapter(list)
         binding.productImgRecyclerView.adapter = adapter
 
-        binding.submitProductBtn.setOnClickListener {
-            validateData()
+
+        // Check if args.product is null to determine button text
+        if (args.product == null) {
+            binding.submitProductBtn.text = "Add Product"
+        } else {
+            binding.submitProductBtn.text = "Update Product"
         }
+
+        binding.submitProductBtn.setOnClickListener {
+            if (productId.isNullOrEmpty()) {
+
+                validateDataForNewProduct()
+
+            } else {
+
+                updateProductData()
+            }
+        }
+
+
+        populateProductDetails()
 
         return binding.root
     }
 
 
-    private fun validateData() {
+
+    private fun populateProductDetails() {
+        val product = args.product
+        if (product != null) {
+            binding.productNameEdt.setText(product.productName)
+            binding.productDescriptionEdt.setText(product.productDescription)
+            binding.productMrpEdt.setText(product.productMrp)
+            binding.productSpEdt.setText(product.productSp)
+            productId = product.productId
+            coverImgUrl = product.productCoverImg
+
+            // Load cover image
+            Glide.with(this).load(product.productCoverImg).into(binding.productCoverImg)
+            binding.productCoverImg.visibility = VISIBLE
+
+            // Load product images
+            listImages.addAll(product.productImages)
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun validateDataForNewProduct() {
         if (binding.productNameEdt.text.toString().isEmpty()) {
             binding.productNameEdt.requestFocus()
             binding.productNameEdt.error = "Empty"
-
         } else if (binding.productDescriptionEdt.text.toString().isEmpty()) {
             binding.productDescriptionEdt.requestFocus()
             binding.productDescriptionEdt.error = "Empty"
-
         } else if (binding.productMrpEdt.text.toString().isEmpty()) {
             binding.productMrpEdt.requestFocus()
             binding.productMrpEdt.error = "Empty"
-
         } else if (binding.productSpEdt.text.toString().isEmpty()) {
             binding.productSpEdt.requestFocus()
             binding.productSpEdt.error = "Empty"
-
         } else if (coverImage == null) {
             Utils.showToast(requireContext(), "Please select cover image")
-
         } else if (list.size < 1) {
             Utils.showToast(requireContext(), "Please select product images")
         } else {
             uploadImage()
         }
     }
+
+    private fun updateProductData() {
+        dialog.show()
+        val db = Firebase.firestore
+        val productRef = db.collection("products").document(productId!!)
+
+        val updatedData = hashMapOf<String, Any>(
+            "productName" to binding.productNameEdt.text.toString(),
+            "productDescription" to binding.productDescriptionEdt.text.toString(),
+            "productMrp" to binding.productMrpEdt.text.toString(),
+            "productSp" to binding.productSpEdt.text.toString(),
+            "productImages" to listImages
+        )
+
+        productRef.update(updatedData as HashMap<String, Any>)
+            .addOnSuccessListener {
+                dialog.dismiss()
+                Utils.showToast(requireContext(), "Product Updated")
+            }
+            .addOnFailureListener {
+                dialog.dismiss()
+                Utils.showToast(requireContext(), "Failed to update product")
+            }
+    }
+
+
+
+
+
+
+
+//    private fun validateData() {
+//        if (binding.productNameEdt.text.toString().isEmpty()) {
+//            binding.productNameEdt.requestFocus()
+//            binding.productNameEdt.error = "Empty"
+//
+//        } else if (binding.productDescriptionEdt.text.toString().isEmpty()) {
+//            binding.productDescriptionEdt.requestFocus()
+//            binding.productDescriptionEdt.error = "Empty"
+//
+//        } else if (binding.productMrpEdt.text.toString().isEmpty()) {
+//            binding.productMrpEdt.requestFocus()
+//            binding.productMrpEdt.error = "Empty"
+//
+//        } else if (binding.productSpEdt.text.toString().isEmpty()) {
+//            binding.productSpEdt.requestFocus()
+//            binding.productSpEdt.error = "Empty"
+//
+//        } else if (coverImage == null) {
+//            Utils.showToast(requireContext(), "Please select cover image")
+//
+//        } else if (list.size < 1) {
+//            Utils.showToast(requireContext(), "Please select product images")
+//        } else {
+//            uploadImage()
+//        }
+//    }
 
 
     private fun uploadImage() {

@@ -1,5 +1,7 @@
 package com.app.adminecommerce.model
 
+import java.io.Serializable
+
 data class AllOrderModel (
     val name : String? = "",
     val orderId : String? = "",
@@ -9,4 +11,4 @@ data class AllOrderModel (
     val price : String? = "",
 
 
-)
+): Serializable

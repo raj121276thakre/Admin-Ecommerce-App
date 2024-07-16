@@ -19,20 +19,72 @@
             android:layout_height="wrap_content"
             android:text="Product Name"
             android:textStyle="bold"
+            android:maxLines="2"
             android:layout_marginBottom="2dp"
             android:textSize="22sp"
             android:textColor="@color/black"
             />
 
         <TextView
-            android:id="@+id/productPrice"
+            android:id="@+id/productQuantity"
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₹1200"
+            android:text="Quantity : 1"
             android:layout_marginBottom="2dp"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/green"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+
+            <TextView
+                android:id="@+id/productTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="total price : ₹900"
+
+                android:layout_marginBottom="2dp"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/green"
+                />
+
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="selling price : ₹1200"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="2dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:textColor="@color/grayish_blue"
+                />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/userIdMobNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mob no : 1234567890"
+            android:layout_marginBottom="2dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             />
 
         <LinearLayout

@@ -28,9 +28,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.app.adminecommerce" />
-                  <option name="mobileSdkAppId" value="1:501269032910:android:53aa2cca28d420f818859f" />
-                  <option name="projectId" value="ecommerce-oil-app-d4e66" />
-                  <option name="projectNumber" value="501269032910" />
+                  <option name="mobileSdkAppId" value="1:51383896592:android:49ce8b8430b886c9dcd895" />
+                  <option name="projectId" value="cosmetic-ecommerce-app" />
+                  <option name="projectNumber" value="51383896592" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

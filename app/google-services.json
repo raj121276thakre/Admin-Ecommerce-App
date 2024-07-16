@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "501269032910",
-    "project_id": "ecommerce-oil-app-d4e66",
-    "storage_bucket": "ecommerce-oil-app-d4e66.appspot.com"
+    "project_number": "51383896592",
+    "project_id": "cosmetic-ecommerce-app",
+    "storage_bucket": "cosmetic-ecommerce-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:501269032910:android:53aa2cca28d420f818859f",
+        "mobilesdk_app_id": "1:51383896592:android:49ce8b8430b886c9dcd895",
         "android_client_info": {
           "package_name": "com.app.adminecommerce"
         }
@@ -15,26 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDp0zDb0aP_iKM6EUPqyi2R0_hOGqpnL1c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:501269032910:android:cb5d1417b0d3131b18859f",
-        "android_client_info": {
-          "package_name": "com.app.userecommerce"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDp0zDb0aP_iKM6EUPqyi2R0_hOGqpnL1c"
+          "current_key": "AIzaSyA7CzCNcfdDDphFREfQyCE2Xrs6G2K5GbE"
         }
       ],
       "services": {

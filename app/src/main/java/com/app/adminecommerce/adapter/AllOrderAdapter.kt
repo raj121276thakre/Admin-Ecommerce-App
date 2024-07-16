@@ -1,11 +1,13 @@
 package com.app.adminecommerce.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.adminecommerce.Utils
+import com.app.adminecommerce.activity.OrdersDetailsActivity
 import com.app.adminecommerce.databinding.AllOrderItemLayoutBinding
 import com.app.adminecommerce.databinding.ImageItemBinding
 import com.app.adminecommerce.model.AllOrderModel
@@ -32,7 +34,19 @@ class AllOrderAdapter(val list: ArrayList<AllOrderModel>, val context: Context):
 
     override fun onBindViewHolder(holder: AllOrderViewHolder, position: Int) {
         holder.binding.productTitle.text = list[position].name
-        holder.binding.productPrice.text = "₹" + list[position].price
+        holder.binding.productPrice.text = "selling price : ₹" + list[position].price
+        holder.binding.userIdMobNo.text = "Mob no :" + list[position].userId
+
+       // holder.binding.productTotalPrice.text = "total price : ₹" + list[position].ProductTotalPrice
+       holder.binding.productTotalPrice.text = "total price : ₹" + list[position].price
+
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, OrdersDetailsActivity::class.java)
+            intent.putExtra("orderDetails", list[position])
+            context.startActivity(intent)
+        }
+
 
         holder.binding.cancleButton.setOnClickListener {
           //  holder.binding.proceedButton.text = "Canceled"

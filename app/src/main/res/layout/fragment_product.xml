@@ -8,10 +8,11 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/productRecyclerView"
         android:layout_width="match_parent"
-
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_product"
+        />
 
     <ProgressBar
         android:id="@+id/progressBar3"
