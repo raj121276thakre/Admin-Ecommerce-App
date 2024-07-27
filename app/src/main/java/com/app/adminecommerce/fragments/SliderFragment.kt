@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.app.adminecommerce.R
 import com.app.adminecommerce.Utils
 import com.app.adminecommerce.databinding.FragmentSliderBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.FirebaseStorage
@@ -45,6 +46,8 @@ class SliderFragment : Fragment() {
         setStatusBarColor()
         // Inflate the layout for this fragment
 
+        getSliderImage()
+
         dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.progress_layout)
         val textViewProgress = dialog.findViewById<TextView>(R.id.dialogText)
@@ -69,6 +72,16 @@ class SliderFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun getSliderImage() {
+        Firebase.firestore.collection("slider").document("item")
+            .get().addOnSuccessListener {
+                Glide.with(requireContext()).load(it.get("img")).into(binding.SliderImage)
+            }
+            .addOnFailureListener {
+                Utils.showToast(requireContext(), "Something went wrong")
+            }
     }
 
 

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_sliderFragment"
             app:destination="@id/sliderFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -57,4 +60,9 @@
         android:name="com.app.adminecommerce.fragments.SliderFragment"
         android:label="fragment_slider"
         tools:layout="@layout/fragment_slider" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.app.adminecommerce.fragments.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

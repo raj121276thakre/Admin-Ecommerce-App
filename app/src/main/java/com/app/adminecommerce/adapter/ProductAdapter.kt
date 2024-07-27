@@ -48,4 +48,13 @@ class ProductAdapter(
     override fun getItemCount(): Int {
         return productList.size
     }
+
+
+
+    fun updateList(newList: List<AddProductModel>) {
+        productList.clear()
+        productList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
 }

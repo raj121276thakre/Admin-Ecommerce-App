@@ -6,6 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SliderFragment">
 
+    <!-- Toolbar -->
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="10dp"
+        android:background="@color/yellow"
+        android:gravity="center_vertical"
+        android:weightSum="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <ImageView
+            android:id="@+id/menu_icon"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.3"
+            android:contentDescription="Menu"
+            />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.28"
+            android:text="Update Slider Image"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:paddingStart="12dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/bell_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.3"
+            android:contentDescription="Notifications"
+            />
+
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/SliderImagePreview"
@@ -15,23 +65,47 @@
         android:src="@drawable/preview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sliderLayout"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/SliderImagePreview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/SliderImage"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:scaleType="fitXY"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
 
 
     <Button
         android:id="@+id/uploadBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload Slider"
-        android:layout_marginTop="24dp"
+        android:text="Update Slider Image"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
         android:backgroundTint="@color/yellow"
         android:textSize="22sp"
-        app:layout_constraintTop_toBottomOf="@id/SliderImagePreview"
+        app:layout_constraintTop_toBottomOf="@id/sliderLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="192dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

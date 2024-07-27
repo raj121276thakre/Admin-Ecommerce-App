@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.app.adminecommerce.R
 import com.app.adminecommerce.Utils
-import com.app.adminecommerce.adapter.AllOrderAdapter
 import com.app.adminecommerce.databinding.ActivityAllOrdersBinding
 import com.app.adminecommerce.model.AllOrderModel
 import com.google.firebase.Firebase
@@ -16,7 +15,7 @@ class AllOrdersActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAllOrdersBinding
     private lateinit var list: ArrayList<AllOrderModel>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   /* override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllOrdersBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,7 +32,7 @@ class AllOrdersActivity : AppCompatActivity() {
                     list.add(data)
 
                 }
-                binding.allordersRecycler.adapter = AllOrderAdapter(list,this)
+               // binding.allordersRecycler.adapter = AllOrderAdapter(list,this)
             }
             .addOnFailureListener {
                 Utils.showToast(this, "Something went wrong")
@@ -41,8 +40,7 @@ class AllOrdersActivity : AppCompatActivity() {
 
 
 
-
-    }
+    }*/
 
 
 }

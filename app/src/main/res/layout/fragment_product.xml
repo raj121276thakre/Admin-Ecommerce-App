@@ -3,39 +3,113 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".fragments.ProductFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productRecyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_product"
-        />
+        android:orientation="vertical"
+        >
+        <!-- Toolbar -->
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:background="#FFC107"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ProgressBar
-        android:id="@+id/progressBar3"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:src="@drawable/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-    />
+
+            <ImageView
+                android:id="@+id/gobackBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:tint="@color/black"
+                android:layout_weight="0.3"
+                android:contentDescription="Menu"
+                />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.28"
+                android:text="All Products"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:paddingStart="12dp"
+                android:gravity="start" />
+
+
+
+
+
+        </LinearLayout>
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/search_bar_background"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="18dp"
+            android:drawableTint="@color/black"
+            android:hint="Search..."
+            android:textColorHint="@color/black"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/item_product"
+                />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:src="@drawable/ic_add"
+                app:tint="@color/blue"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

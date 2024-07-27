@@ -10,8 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.app.adminecommerce.R
+import com.app.adminecommerce.Utils
 import com.app.adminecommerce.activity.AllOrdersActivity
 import com.app.adminecommerce.databinding.FragmentHomeBinding
+import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 
 class HomeFragment : Fragment() {
@@ -25,18 +29,22 @@ private lateinit var binding:  FragmentHomeBinding
         setStatusBarColor()
         // Inflate the layout for this fragment
 
-        binding.button.setOnClickListener {
+        getSliderImage()
+
+        binding.gotoAddCategory.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
         }
-        binding.button2.setOnClickListener {
+        binding.gotoAddProducts.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_productFragment)
         }
-        binding.button3.setOnClickListener {
+        binding.gotoAddSlider.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_sliderFragment)
         }
-        binding.button4.setOnClickListener {
-           startActivity(Intent(requireContext(),AllOrdersActivity::class.java))
+        binding.gotoAllOrders.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_ordersFragment)
         }
+
+
 
 
         return binding.root
@@ -52,6 +60,17 @@ private lateinit var binding:  FragmentHomeBinding
                 decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
         }
+    }
+
+
+    private fun getSliderImage() {
+        Firebase.firestore.collection("slider").document("item")
+            .get().addOnSuccessListener {
+                Glide.with(requireContext()).load(it.get("img")).into(binding.SliderImage)
+            }
+            .addOnFailureListener {
+                Utils.showToast(requireContext(), "Something went wrong")
+            }
     }
 
 

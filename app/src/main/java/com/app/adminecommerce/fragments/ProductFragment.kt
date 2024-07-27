@@ -2,26 +2,28 @@ package com.app.adminecommerce.fragments
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.adminecommerce.R
 import com.app.adminecommerce.adapter.ProductAdapter
 import com.app.adminecommerce.databinding.FragmentProductBinding
 import com.app.adminecommerce.model.AddProductModel
-import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
 
 
 class ProductFragment : Fragment() {
     private lateinit var binding: FragmentProductBinding
     private lateinit var productList: ArrayList<AddProductModel>
     private lateinit var adapter: ProductAdapter
+
+    private lateinit var filteredList: ArrayList<AddProductModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,16 +34,18 @@ class ProductFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding.floatingActionButton.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_productFragment_to_addProductFragment)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_productFragment_to_addProductFragment)
         }
 
         productList = ArrayList()
-        adapter = ProductAdapter(productList, requireContext(), ::onEditClicked, ::onDeleteClicked)
+        filteredList = ArrayList()
+        adapter = ProductAdapter(filteredList, requireContext(), ::onEditClicked, ::onDeleteClicked)
         binding.productRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.productRecyclerView.adapter = adapter
 
         fetchProducts()
-
+        setupSearchBar()
 
         return binding.root
     }
@@ -54,8 +58,36 @@ class ProductFragment : Fragment() {
                     val product = document.toObject(AddProductModel::class.java)
                     productList.add(product)
                 }
+                filteredList.clear()
+                filteredList.addAll(productList)
                 adapter.notifyDataSetChanged()
             }
+    }
+
+    private fun setupSearchBar() {
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                filterProducts(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+    private fun filterProducts(query: String) {
+        filteredList.clear()
+        if (query.isEmpty()) {
+            filteredList.addAll(productList)
+        } else {
+            val filteredResults = productList.filter {
+                it.productName.contains(query, ignoreCase = true) ||
+                        it.productDescription.contains(query, ignoreCase = true)
+            }
+            filteredList.addAll(filteredResults)
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun onEditClicked(product: AddProductModel) {
@@ -63,15 +95,12 @@ class ProductFragment : Fragment() {
         Navigation.findNavController(requireView()).navigate(action)
     }
 
-
     private fun onDeleteClicked(productId: String) {
         FirebaseFirestore.getInstance().collection("products").document(productId)
             .delete().addOnSuccessListener {
                 fetchProducts() // Refresh the list
             }
     }
-
-
 
 
     //status bar color
